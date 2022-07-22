@@ -34,6 +34,10 @@ class Game extends Lightning.Component {
   tailItemPadding = 10;
   itemSize = 80;
 
+  _active() {
+    this.startGame();
+  }
+
   renderGame() {
     const { snake, food, score } = this.game.gameObjects;
     const children = [];
@@ -66,8 +70,8 @@ class Game extends Lightning.Component {
   }
 
   gameEndHandler() {
-    this.game = null;
-    Router.navigate("highscore");
+    this.endGame();
+    Router.navigate("Highscore");
   }
 
   // Hint: Use this method to start the game
