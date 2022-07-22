@@ -1,4 +1,4 @@
-import { Lightning, Colors } from "@lightningjs/sdk";
+import { Lightning, Colors, Router } from "@lightningjs/sdk";
 import Button from "../components/Button";
 import fontStyles from "../lib/fontStyles";
 import styles from "../lib/styles";
@@ -55,6 +55,10 @@ class Highscore extends Lightning.Component {
         PlayAgain: {
           type: Button,
           title: "Play Again",
+          path: "Game",
+          signals: {
+            _buttonPressed: "_buttonPressedHandler",
+          },
         },
 
         GoBackHome: {
@@ -63,6 +67,10 @@ class Highscore extends Lightning.Component {
             marginTop: styles.spacing.medium,
           },
           title: "Home",
+          path: "MainMenu",
+          signals: {
+            _buttonPressed: "_buttonPressedHandler",
+          },
         },
 
         ClearHighscores: {
@@ -71,6 +79,10 @@ class Highscore extends Lightning.Component {
             marginTop: styles.spacing.medium,
           },
           title: "Clear Highscores",
+          clearScore: true,
+          signals: {
+            _clearScore: "clearScores",
+          },
         },
       },
     };
@@ -119,6 +131,10 @@ class Highscore extends Lightning.Component {
   clearScores() {
     clearHighscores();
     this._renderHighscores();
+  }
+
+  _buttonPressedHandler(route) {
+    Router.navigate(route);
   }
 }
 

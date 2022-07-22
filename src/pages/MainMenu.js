@@ -55,11 +55,19 @@ class MainMenu extends Lightning.Component {
         PlayItem: {
           type: Button,
           title: "Play",
+          path: "Game",
+          signals: {
+            _buttonPressed: "_buttonPressedHandler",
+          },
         },
 
         HighscoreItem: {
           type: Button,
           title: "Highscore",
+          path: "Highscore",
+          signals: {
+            _buttonPressed: "_buttonPressedHandler",
+          },
           flexItem: {
             marginTop: styles.spacing.medium,
           },
@@ -80,6 +88,10 @@ class MainMenu extends Lightning.Component {
 
   _handleUp() {
     this._index = 0;
+  }
+
+  _buttonPressedHandler(route) {
+    Router.navigate(route);
   }
 }
 
